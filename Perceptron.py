@@ -8,8 +8,7 @@ class Perceptron:
         self._W = W
         self._i = i
     def fit(self, X, y):
-        for row in range(X.shape[0]):
-            print(row)
+        print(X.shape(0))
 
 #        for label in y:
 #            a = af.Hardlims(self._W.T @ self._p)

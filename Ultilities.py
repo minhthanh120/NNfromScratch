@@ -1,6 +1,5 @@
 def make_label(x, sample):
-    
-    if type(sample) is not list:
-        temp = sample.tolist()
-    temp = sample
-    return temp.index(x)
+  temp = sample
+  if type(temp) is not list:
+      temp = temp.tolist()
+  return temp.index(x)

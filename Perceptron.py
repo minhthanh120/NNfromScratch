@@ -19,12 +19,18 @@ class Perceptron:
         if self._W is None:
             self._W = np.zeros(d).reshape(1, -1)
         for p, label in zip(X, y):
-            n = self._W@p.reshape(-1, 1) + self._b
+            n = self._W @ p.reshape(-1, 1) + self._b
             self._a = Hardlim(n)
             self.PLA_rule(p, label)
 
-    def PLA_rule(self, p,label):
+    def PLA_rule(self, p, label):
         e = label - self._a
         self._W = self._W + e*p
         self._b = self._b + e
 
+    def predict(self, X):
+        return self._W @ X.reshape(-1, 1)+self._b
+
+    def score(self, X, y):
+        for x, label in zip(X, y):
+            self.predict(x)

@@ -29,7 +29,8 @@ class Perceptron:
         self._b = self._b + e
 
     def predict(self, X):
-        return self._W @ X.reshape(-1, 1)+self._b
+        n = self._W @ X.reshape(-1, 1)+self._b
+        return Hardlim(n)
 
     def score(self, X, y):
         for x, label in zip(X, y):

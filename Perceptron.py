@@ -29,7 +29,7 @@ class Perceptron:
     def PLA_rule(self, p, label):
         e = label - self._a
         self._W = self._W + e*p
-        self._b = self._b + es
+        self._b = self._b + e
 
     def predict(self, X):
         if X.shape[-1] >1:

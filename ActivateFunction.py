@@ -1,5 +1,5 @@
 from math import exp
-
+import numpy as np
 
 def ReLU(n):
     '''
@@ -7,6 +7,7 @@ def ReLU(n):
     :param n:
     :return: a
     '''
+    #scale = lambda x 
     return max(0, n)
 
 
@@ -15,17 +16,16 @@ def Purelin(n):
 
 
 def Hardlim(n):
-    if n < 0: return 0
-    return 1
+    return np.where(n<0, 0 , 1)
 
 
 def Hardlims(n):
-    if n < 0: return -1
-    return 1
+    return np.where(n<0, -1 , 1)
 
 
 def Satlin(n):
-    return clamp(n, 0, 1)
+    scale = lambda x: clamp(x, 0, 1)
+    return scale(n)
 
 
 def clamp(n, min, max):
@@ -39,12 +39,14 @@ def clamp(n, min, max):
 
 
 def Satlins(n):
-    return clamp(n, -1, 1)
+    scale = lambda x: clamp(x, -1, 1)
+    return scale(n)
 
 
 def Logsid(n):
-    return 1 / (1 + exp(-n))
-
+    return Logsid_scale(n)
+Logsid_scale = lambda x: 1 / (1 + np.exp(-x))
 
 def Tansig(n):
-    return (exp(n) - exp(-n)) / (exp(n) + exp(-n))
+    return Tansig_scale(n)
+Tansig_scale = lambda x: (np.exp(x) - np.exp(-x)) / (np.exp(x) + np.exp(-x))

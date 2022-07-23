@@ -8,11 +8,13 @@ class Perceptron:
     _b = None
     _a = None
     _i = 1
+    _eta = None
 
-    def __init__(self, W=None, b=None, i=None):
+    def __init__(self, W=None, b=None, i=None, eta = 0.01):
         self._W = W
         self._b = 0
         self._i = i
+        self._eta = eta
 
     def fit(self, X, y):
         d = X.shape[1]
@@ -31,7 +33,3 @@ class Perceptron:
     def predict(self, X):
         n = self._W @ X.reshape(-1, 1)+self._b
         return Hardlim(n)
-
-    def score(self, X, y):
-        for x, label in zip(X, y):
-            self.predict(x)
